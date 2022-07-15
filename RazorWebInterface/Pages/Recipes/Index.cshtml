@@ -1,0 +1,47 @@
+﻿@page
+@model RazorWebInterface.Pages.Recipes.IndexModel
+@{
+}
+
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">Title</th>
+			<th scope="col">Ingredients</th>
+			<th scope="col">Instructions</th>
+			<th scope="col">Categories</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var recipe in Model.RecipeList)
+		{
+			<tr>
+				<th scope="row">@recipe.Title</th>
+				<td>
+					<ul>
+						@foreach (var ingredient in recipe.Ingredients)
+						{
+							<li>@ingredient</li>
+						}
+					</ul>
+				</td>
+				<td>
+					<ul>
+						@foreach (var instruction in recipe.Instructions)
+						{
+							<li>@instruction</li>
+						}
+					</ul>
+				</td>
+				<td>
+					<ul>
+						@foreach (var category in recipe.Categories)
+						{
+							<li>@category</li>
+						}
+					</ul>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

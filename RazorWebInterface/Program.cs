@@ -1,7 +1,15 @@
+using System.Net.Http.Headers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddHttpClient("RecipeAPI", httpClient =>
+{
+    httpClient.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
+	httpClient.DefaultRequestHeaders.Accept.Clear();
+	httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+});
 
 var app = builder.Build();
 

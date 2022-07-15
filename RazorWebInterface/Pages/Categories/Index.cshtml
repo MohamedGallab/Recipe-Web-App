@@ -1,0 +1,25 @@
+﻿@page
+@model RazorWebInterface.Pages.Categories.IndexModel
+@{
+}
+
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">Title</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var category in Model.CategoryList)
+		{
+			<tr>
+				<th scope="row">@category</th>
+				<td>
+                    <a asp-page="./Edit" asp-route-category="@category">Edit</a> |
+                    <a asp-page="./Details" asp-route-category="@category">Details</a> |
+                    <a asp-page="./Delete" asp-route-category="@category">Delete</a>
+                </td>
+			</tr>
+		}
+	</tbody>
+</table>

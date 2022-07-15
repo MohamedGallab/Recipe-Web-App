@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorWebInterface", "RazorWebInterface\RazorWebInterface.csproj", "{0D7FFF1D-22A7-475F-A181-6EF4F6C46401}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RazorWebInterface", "RazorWebInterface\RazorWebInterface.csproj", "{0D7FFF1D-22A7-475F-A181-6EF4F6C46401}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeAPI", "..\Service Driven Recipe Console\RecipeAPI\RecipeAPI.csproj", "{D26CC482-E195-4088-894F-7514D9A0BDC9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{0D7FFF1D-22A7-475F-A181-6EF4F6C46401}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D7FFF1D-22A7-475F-A181-6EF4F6C46401}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D7FFF1D-22A7-475F-A181-6EF4F6C46401}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D26CC482-E195-4088-894F-7514D9A0BDC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D26CC482-E195-4088-894F-7514D9A0BDC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D26CC482-E195-4088-894F-7514D9A0BDC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D26CC482-E195-4088-894F-7514D9A0BDC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
