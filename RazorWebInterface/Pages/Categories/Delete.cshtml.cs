@@ -8,6 +8,7 @@ public class DeleteModel : PageModel
 	[BindProperty(SupportsGet = true)]
 	public string? Category { get; set; }
 	private readonly IHttpClientFactory _httpClientFactory;
+
 	public DeleteModel(IHttpClientFactory httpClientFactory) =>
 			_httpClientFactory = httpClientFactory;
 
@@ -21,9 +22,9 @@ public class DeleteModel : PageModel
 		return Page();
 	}
 
-	public async Task<IActionResult> OnPostAsync(string? category)
+	public async Task<IActionResult> OnPostAsync()
 	{
-		if (category == null)
+		if (Category == null)
 		{
 			return NotFound();
 		}
