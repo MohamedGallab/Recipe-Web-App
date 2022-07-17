@@ -4,27 +4,29 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RazorWebInterface.Pages.Categories;
 
-public class CreateModel : PageModel
+public class EditModel : PageModel
 {
+	[FromRoute(Name = "category")]
+	public string OldCategory { get; set; } = String.Empty;
 	[BindProperty]
 	[Required]
-	[Display(Name = "Category Name")]
-	public string Category { get; set; } = String.Empty;
+	[Display(Name = "New Category Name")]
+	public string NewCategory { get; set; } = String.Empty;
 	private readonly IHttpClientFactory _httpClientFactory;
 
-	public CreateModel(IHttpClientFactory httpClientFactory) =>
+	public EditModel(IHttpClientFactory httpClientFactory) =>
 			_httpClientFactory = httpClientFactory;
+
 	public void OnGet()
 	{
 	}
-
 	public async Task<IActionResult> OnPostAsync()
 	{
 		if (!ModelState.IsValid)
 			return Page();
 
 		var httpClient = _httpClientFactory.CreateClient("RecipeAPI");
-		var response = await httpClient.PostAsJsonAsync("categories?category=" + Category, Category);
+		var response = await httpClient.PutAsync($"categories?oldcategory={OldCategory}&editedcategory={NewCategory}", null);
 		response.EnsureSuccessStatusCode();
 		return RedirectToPage("./Index");
 	}

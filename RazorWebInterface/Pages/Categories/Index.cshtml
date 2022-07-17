@@ -1,6 +1,7 @@
 ﻿@page
 @model RazorWebInterface.Pages.Categories.IndexModel
 @{
+	ViewData["Title"] = "Categories";
 }
 <h1>Index</h1>
 
@@ -21,7 +22,6 @@
 				<th scope="row">@category</th>
 				<td>
                     <a asp-page="./Edit" asp-route-category="@category">Edit</a> |
-                    <a asp-page="./Details" asp-route-category="@category">Details</a> |
                     <a asp-page="./Delete" asp-route-category="@category">Delete</a>
                 </td>
 			</tr>

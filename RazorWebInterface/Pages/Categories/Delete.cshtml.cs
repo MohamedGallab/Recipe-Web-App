@@ -5,38 +5,22 @@ namespace RazorWebInterface.Pages.Categories;
 
 public class DeleteModel : PageModel
 {
-	[BindProperty(SupportsGet = true)]
-	public string? Category { get; set; }
+	[FromRoute(Name = "category")]
+	public string Category { get; set; } = String.Empty;
 	private readonly IHttpClientFactory _httpClientFactory;
 
 	public DeleteModel(IHttpClientFactory httpClientFactory) =>
 			_httpClientFactory = httpClientFactory;
 
-	public IActionResult OnGetAsync(string? category)
+	public void OnGet()
 	{
-		if (category == null)
-		{
-			return NotFound();
-		}
-
-		return Page();
 	}
 
 	public async Task<IActionResult> OnPostAsync()
 	{
-		if (Category == null)
-		{
-			return NotFound();
-		}
-
-		//Movie = await _context.Movie.FindAsync(category);
-
-		//if (Movie != null)
-		//{
-		//    _context.Movie.Remove(Movie);
-		//    await _context.SaveChangesAsync();
-		//}
-
+		var httpClient = _httpClientFactory.CreateClient("RecipeAPI");
+		var response = await httpClient.DeleteAsync("categories?category=" + Category);
+		response.EnsureSuccessStatusCode();
 		return RedirectToPage("./Index");
 	}
 }

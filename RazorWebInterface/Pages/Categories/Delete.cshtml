@@ -1,6 +1,7 @@
-﻿@page
+﻿@page "{category}"
 @model RazorWebInterface.Pages.Categories.DeleteModel
 @{
+	ViewData["Title"] = "Delete";
 }
 <h1>Delete</h1>
 
@@ -16,7 +17,6 @@
 	</dl>
 
 	<form method="post">
-		<input type="hidden" />
 		<input type="submit" value="Delete" class="btn btn-danger" /> |
 		<a asp-page="./Index">Back to List</a>
 	</form>
