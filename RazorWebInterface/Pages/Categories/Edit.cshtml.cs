@@ -7,6 +7,7 @@ namespace RazorWebInterface.Pages.Categories;
 public class EditModel : PageModel
 {
 	[FromRoute(Name = "category")]
+	[Display(Name = "Old Category Name")]
 	public string OldCategory { get; set; } = String.Empty;
 	[BindProperty]
 	[Required]

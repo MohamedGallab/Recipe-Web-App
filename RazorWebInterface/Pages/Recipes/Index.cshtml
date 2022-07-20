@@ -73,10 +73,11 @@
 						</div>
 
 					</div>
-
-					<div class="btn-group">
-						<a class="btn btn-primary" asp-page="./Edit" asp-route-category="@recipe.Id">Edit</a>
-						<a class="btn btn-danger" asp-page="./Delete" asp-route-category="@recipe.Id">Delete</a>
+					<div class="text-center mt-3">
+						<div class="btn-group">
+							<a class="btn btn-primary" asp-page="./Edit" asp-route-recipeId="@recipe.Id">Edit</a>
+							<a class="btn btn-danger" asp-page="./Delete" asp-route-recipeId="@recipe.Id">Delete</a>
+						</div>
 					</div>
 
 				</div>

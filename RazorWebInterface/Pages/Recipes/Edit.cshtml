@@ -1,18 +1,50 @@
-﻿@page "{category}"
+﻿@page "{recipeId}"
 @model RazorWebInterface.Pages.Recipes.EditModel
 @{
 	ViewData["Title"] = "Edit";
 }
 
-<h2 class="my-4">Edit A Category</h2>
+<h2 class="my-4">Edit A Recipe</h2>
 
 <form method="post">
 	<div class="my-3 row">
-		<label asp-for="@Model.NewCategory" class="col-2 col-form-label"></label>
-		<div class="col-10">
-			<input asp-for="@Model.NewCategory" class="form-control" />
+		<label asp-for="@Model.Recipe.Title" class="col-2 col-form-label"></label>
+		<div class="col-3">
+			<input asp-for="@Model.Recipe.Title" class="form-control" placeholder="@Model.Recipe.Title" />
 		</div>
-		<span asp-validation-for="@Model.NewCategory" class="text-danger"></span>
+		<span asp-validation-for="@Model.Recipe.Title" class="text-danger"></span>
+	</div>
+
+	<div class="my-3 row">
+		<label asp-for=@Model.Recipe.Ingredients class="col-form-label col-2 "></label>
+		<div class="col-5">
+			<textarea textarea class="form-control" rows="5" placeholder="enter every ingredient on a separate line" data-val="true" data-val-required="The Ingredients field is required." id="Ingredients" name="Ingredients">@String.Join(Environment.NewLine, Model.Recipe.Ingredients)</textarea>
+		</div>
+	</div>
+
+	<div class="my-3 row">
+		<label asp-for=@Model.Recipe.Instructions class="col-form-label col-2 "></label>
+		<div class="col-5">
+			<textarea textarea class="form-control" rows="5" placeholder="enter every instruction on a separate line" data-val="true" data-val-required="The Instructions field is required." id="Instructions" name="Instructions">@String.Join(Environment.NewLine, Model.Recipe.Instructions)</textarea>
+		</div>
+	</div>
+
+	<div class="my-3 row">
+		<label asp-for=@Model.Recipe.Categories class="col-form-label col-2 "></label>
+		<div class="col-10">
+			@foreach (string category in @Model.Categories)
+			{
+				if (Model.Recipe.Categories.Contains(category))
+				{
+					<input name="ChosenCategories" type="checkbox" value="@category" checked=""/> @category
+				}
+				else
+				{
+					<input name="ChosenCategories" type="checkbox" value="@category"/> @category
+				}
+				<br />
+			}
+		</div>
 	</div>
 	<div class="btn-group float-end">
 		<input type="submit" value="Edit" class="btn btn-primary" />
