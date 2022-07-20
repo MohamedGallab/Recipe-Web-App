@@ -18,14 +18,18 @@
 	<div class="my-3 row">
 		<label asp-for=@Model.Recipe.Ingredients class="col-form-label col-2 "></label>
 		<div class="col-5">
-			<textarea textarea class="form-control" rows="5" placeholder="enter every ingredient on a separate line" data-val="true" data-val-required="The Ingredients field is required." id="Ingredients" name="Ingredients">@String.Join(Environment.NewLine, Model.Recipe.Ingredients)</textarea>
+			<textarea textarea class="form-control" rows="5" placeholder="enter every ingredient on a separate line" 
+			data-val="true" data-val-required="The Ingredients field is required." id="Ingredients" 
+			name="Ingredients">@String.Join(Environment.NewLine, Model.Recipe.Ingredients)</textarea>
 		</div>
 	</div>
 
 	<div class="my-3 row">
 		<label asp-for=@Model.Recipe.Instructions class="col-form-label col-2 "></label>
 		<div class="col-5">
-			<textarea textarea class="form-control" rows="5" placeholder="enter every instruction on a separate line" data-val="true" data-val-required="The Instructions field is required." id="Instructions" name="Instructions">@String.Join(Environment.NewLine, Model.Recipe.Instructions)</textarea>
+			<textarea textarea class="form-control" rows="5" placeholder="enter every instruction on a separate line"
+			data-val="true" data-val-required="The Instructions field is required." id="Instructions"
+			name="Instructions">@String.Join(Environment.NewLine, Model.Recipe.Instructions)</textarea>
 		</div>
 	</div>
 
