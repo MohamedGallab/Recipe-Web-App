@@ -5,6 +5,8 @@ namespace RazorWebInterface.Pages.Categories;
 
 public class IndexModel : PageModel
 {
+	[TempData]
+	public string? ActionResult { get; set; }
 	private readonly IHttpClientFactory _httpClientFactory;
 
 	public IndexModel(IHttpClientFactory httpClientFactory) =>
@@ -12,12 +14,20 @@ public class IndexModel : PageModel
 
 	public List<string> CategoryList { get; set; } = new();
 
-	public async Task OnGetAsync()
+	public async Task<IActionResult> OnGetAsync()
 	{
-		var httpClient = _httpClientFactory.CreateClient("RecipeAPI");
-		List<string>? categories = await httpClient.GetFromJsonAsync<List<string>>("categories");
-		if (categories == null)
-			return;
-		CategoryList = categories;
+		try
+		{
+			var httpClient = _httpClientFactory.CreateClient("RecipeAPI");
+			List<string>? categories = await httpClient.GetFromJsonAsync<List<string>>("categories");
+			if (categories != null)
+				CategoryList = categories;
+			return Page();
+		}
+		catch (Exception)
+		{
+			ActionResult = "Something went wrong, Try again later";
+			return RedirectToPage("/Index");
+		}
 	}
 }

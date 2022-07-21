@@ -3,12 +3,27 @@
 @{
 }
 
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if (@Model.ActionResult != null)
+{
+	<script type="text/javascript">
+		Swal.fire({
+			text: '@Model.ActionResult',
+			toast: true,
+			position: 'top-end',
+			showConfirmButton: false,
+			icon: 'info',
+		})
+	</script>
+}
+
+
 <div class="container d-flex justify-content-between align-items-center my-4">
-	<h2>All Recipies</h2>
-	<a class="btn btn-primary h-25" asp-page="Create">Create New</a>
+	<h2>All Recipes</h2>
+	<a class="btn btn-primary h-25" asp-page="Create">Add a Recipe</a>
 </div>
 
-<div class="row row-cols-3 g-4">
+<div class="row row-cols-sm-1 row-cols-xl-2 g-4">
 	@foreach (var recipe in Model.RecipeList)
 	{
 		<div class="col">
@@ -16,6 +31,11 @@
 				<div class="card-body">
 
 					<h5 class="card-title text-center">@recipe.Title</h5>
+
+					@foreach (var category in recipe.Categories)
+					{
+						<span class="badge bg-success mb-2">@category</span>
+					}
 
 					<div class="accordion">
 						<div class="accordion-item">
@@ -54,29 +74,15 @@
 							</div>
 						</div>
 
-						<div class="accordion-item">
-							<h2 class="accordion-header">
-								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#@("Categoties"+recipe.Id)" aria-expanded="false" aria-controls=@("Categoties"+recipe.Id)>
-									Categories
-								</button>
-							</h2>
-							<div id=@("Categoties"+recipe.Id) class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
-								<div class="accordion-body">
-									<ul>
-										@foreach (var category in recipe.Categories)
-										{
-											<li>@category</li>
-										}
-									</ul>
-								</div>
-							</div>
-						</div>
-
 					</div>
 					<div class="text-center mt-3">
 						<div class="btn-group">
-							<a class="btn btn-primary" asp-page="./Edit" asp-route-recipeId="@recipe.Id">Edit</a>
-							<a class="btn btn-danger" asp-page="./Delete" asp-route-recipeId="@recipe.Id">Delete</a>
+							<a class="btn btn-primary" asp-page="./Edit" asp-route-recipeId="@recipe.Id">
+								<i class="bi bi-pencil-square"></i>
+							</a>
+							<a class="btn btn-danger" asp-page="./Delete" asp-route-recipeId="@recipe.Id">
+								<i class="bi bi-trash"></i>
+							</a>
 						</div>
 					</div>
 

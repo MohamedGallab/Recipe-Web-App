@@ -6,6 +6,8 @@ namespace RazorWebInterface.Pages.Recipes;
 
 public class DeleteModel : PageModel
 {
+	[TempData]
+	public string? ActionResult { get; set; }
 	[BindProperty(SupportsGet = true)]
 	public Guid RecipeId { get; set; } = Guid.Empty;
 	public Recipe Recipe { get; set; } = new();
@@ -16,18 +18,36 @@ public class DeleteModel : PageModel
 
 	public async Task<IActionResult> OnGet()
 	{
-		var httpClient = _httpClientFactory.CreateClient("RecipeAPI");
-		Recipe = await httpClient.GetFromJsonAsync<Recipe>($"recipes/{RecipeId}");
-		if(Recipe == null)
-			return NotFound();
-		return Page();
+		try
+		{
+			var httpClient = _httpClientFactory.CreateClient("RecipeAPI");
+			var response = await httpClient.GetFromJsonAsync<Recipe>($"recipes/{RecipeId}");
+			if (response == null)
+				return NotFound();
+			Recipe = response;
+			return Page();
 		}
+		catch (Exception)
+		{
+			ActionResult = "Something went wrong please try again later";
+			return RedirectToPage("./Index");
+		}
+	}
 
 	public async Task<IActionResult> OnPostAsync()
 	{
-		var httpClient = _httpClientFactory.CreateClient("RecipeAPI");
-		var response = await httpClient.DeleteAsync("recipes?id=" + RecipeId);
-		response.EnsureSuccessStatusCode();
+		try
+		{
+			var httpClient = _httpClientFactory.CreateClient("RecipeAPI");
+			var response = await httpClient.DeleteAsync("recipes?id=" + RecipeId);
+			response.EnsureSuccessStatusCode();
+			ActionResult = "Successfully Deleted";
+		}
+		catch (Exception)
+		{
+			ActionResult = "Something went wrong please try again later";
+		}
 		return RedirectToPage("./Index");
 	}
 }
+

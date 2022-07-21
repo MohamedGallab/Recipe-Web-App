@@ -6,6 +6,8 @@ namespace RazorWebInterface.Pages.Categories;
 
 public class EditModel : PageModel
 {
+	[TempData]
+	public string? ActionResult { get; set; }
 	[FromRoute(Name = "category")]
 	[Display(Name = "Old Category Name")]
 	public string OldCategory { get; set; } = String.Empty;
@@ -25,10 +27,17 @@ public class EditModel : PageModel
 	{
 		if (!ModelState.IsValid)
 			return Page();
-
-		var httpClient = _httpClientFactory.CreateClient("RecipeAPI");
-		var response = await httpClient.PutAsync($"categories?oldcategory={OldCategory}&editedcategory={NewCategory}", null);
-		response.EnsureSuccessStatusCode();
+		try
+		{
+			var httpClient = _httpClientFactory.CreateClient("RecipeAPI");
+			var response = await httpClient.PutAsync($"categories?oldcategory={OldCategory}&editedcategory={NewCategory}", null);
+			response.EnsureSuccessStatusCode();
+			ActionResult = "Created successfully";
+		}
+		catch (Exception)
+		{
+			ActionResult = "Something went wrong, Try again later";
+		}
 		return RedirectToPage("./Index");
 	}
 }

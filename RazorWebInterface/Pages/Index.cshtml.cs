@@ -5,6 +5,8 @@ namespace RazorWebInterface.Pages
 {
 	public class IndexModel : PageModel
 	{
+		[TempData]
+		public string? ActionResult { get; set; }
 		private readonly ILogger<IndexModel> _logger;
 
 		public IndexModel(ILogger<IndexModel> logger)

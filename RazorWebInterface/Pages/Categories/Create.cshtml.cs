@@ -6,6 +6,8 @@ namespace RazorWebInterface.Pages.Categories;
 
 public class CreateModel : PageModel
 {
+	[TempData]
+	public string? ActionResult { get; set; }
 	[BindProperty]
 	[Required]
 	[Display(Name = "Category Name")]
@@ -22,10 +24,17 @@ public class CreateModel : PageModel
 	{
 		if (!ModelState.IsValid)
 			return Page();
-
-		var httpClient = _httpClientFactory.CreateClient("RecipeAPI");
-		var response = await httpClient.PostAsJsonAsync("categories?category=" + Category, Category);
-		response.EnsureSuccessStatusCode();
+		try
+		{
+			var httpClient = _httpClientFactory.CreateClient("RecipeAPI");
+			var response = await httpClient.PostAsJsonAsync("categories?category=" + Category, Category);
+			response.EnsureSuccessStatusCode();
+			ActionResult = "Created successfully";
+		}
+		catch (Exception)
+		{
+			ActionResult = "Something went wrong, Try again later";
+		}
 		return RedirectToPage("./Index");
 	}
 }
