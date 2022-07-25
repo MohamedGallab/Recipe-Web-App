@@ -52,7 +52,7 @@ public class CreateModel : PageModel
 		if (!ModelState.IsValid)
 			return Page();
 
-		Recipe.Id = Guid.NewGuid();
+		Recipe.Id = Guid.Empty;
 		if (ChosenCategories != null)
 			Recipe.Categories = (List<string>)ChosenCategories;
 		if (Ingredients != null)
