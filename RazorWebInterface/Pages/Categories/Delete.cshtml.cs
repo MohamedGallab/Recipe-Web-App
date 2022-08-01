@@ -23,7 +23,7 @@ public class DeleteModel : PageModel
 		try
 		{
 			var httpClient = _httpClientFactory.CreateClient("RecipeAPI");
-			var response = await httpClient.DeleteAsync("categories?category=" + Category);
+			var response = await httpClient.DeleteAsync($"categories/{Category}");
 			response.EnsureSuccessStatusCode();
 			ActionResult = "Created successfully";
 		}

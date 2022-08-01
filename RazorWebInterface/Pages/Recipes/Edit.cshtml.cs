@@ -52,7 +52,7 @@ public class EditModel : PageModel
 		var httpClient = _httpClientFactory.CreateClient("RecipeAPI");
 		try
 		{
-			var response = await httpClient.PutAsJsonAsync("recipes", Recipe);
+			var response = await httpClient.PutAsJsonAsync($"recipes/{Recipe.Id}", Recipe);
 			response.EnsureSuccessStatusCode();
 			ActionResult = "Successfully Edited";
 		}

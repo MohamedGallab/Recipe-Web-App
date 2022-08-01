@@ -39,7 +39,7 @@ public class DeleteModel : PageModel
 		try
 		{
 			var httpClient = _httpClientFactory.CreateClient("RecipeAPI");
-			var response = await httpClient.DeleteAsync("recipes?id=" + RecipeId);
+			var response = await httpClient.DeleteAsync($"recipes/{RecipeId}");
 			response.EnsureSuccessStatusCode();
 			ActionResult = "Successfully Deleted";
 		}

@@ -30,7 +30,7 @@ public class EditModel : PageModel
 		try
 		{
 			var httpClient = _httpClientFactory.CreateClient("RecipeAPI");
-			var response = await httpClient.PutAsync($"categories?oldcategory={OldCategory}&editedcategory={NewCategory}", null);
+			var response = await httpClient.PutAsync($"categories/{OldCategory}?editedcategory={NewCategory}", null);
 			response.EnsureSuccessStatusCode();
 			ActionResult = "Created successfully";
 		}
