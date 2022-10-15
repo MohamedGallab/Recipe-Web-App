@@ -5,10 +5,6 @@ a recipe web application with a Razor frontend and a JSON API backened
 - [Razor Pages](https://learn.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-6.0&tabs=visual-studio)
 - [BootStrap 5](https://getbootstrap.com/docs/5.2/getting-started/introduction/)
 
-- Added Validation
-
-  <img width="1280" alt="image" src="https://user-images.githubusercontent.com/74183135/180331934-33b95d20-bbae-474e-a02a-9d4194800429.png">
-
 ## Screenshots
 Main Page (Note that in the left picture the mouse is hovering on the picture which pulls up the text)
 <img width="1280" alt="image" src="https://user-images.githubusercontent.com/74183135/180311250-3cdd4be7-9d78-4297-af86-a8690678011f.png">
@@ -16,6 +12,9 @@ Main Page (Note that in the left picture the mouse is hovering on the picture wh
 ### Recipes 
 Recipes Page
 <img width="1280" alt="image" src="https://user-images.githubusercontent.com/74183135/180065923-7f56aeb2-008a-435e-b8b7-ff968825eb63.png">
+
+Added Validation
+<img width="1280" alt="image" src="https://user-images.githubusercontent.com/74183135/180331934-33b95d20-bbae-474e-a02a-9d4194800429.png">
 
 Edit Recipe
 <img width="1280" alt="image" src="https://user-images.githubusercontent.com/74183135/180066018-bbf4a321-a91b-4dfd-a0d6-893ef4f1dd7f.png">
